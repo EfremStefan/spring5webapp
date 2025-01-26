@@ -12,16 +12,19 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private final String title;
+    private String title;
 
-    private final String isbn;
+    private String isbn;
     @ManyToOne
-    private final Publisher publisher;
+    private Publisher publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id")
             , inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private final Set<Author> authors;
+    private Set<Author> authors;
+
+    protected Book() {
+    }
 
     public Book(String title, String isbn, Set<Author> authors, Publisher publisher) {
         this.title = title;

@@ -13,11 +13,14 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private final String firstName;
-    private final String lastName;
+    private String firstName;
+    private String lastName;
 
     @ManyToMany(mappedBy = "authors")
-    private final Set<Book> books;
+    private Set<Book> books;
+
+    protected Author() {
+    }
 
     public Author(String firstName, String lastName, Set<Book> books) {
         this.firstName = firstName;

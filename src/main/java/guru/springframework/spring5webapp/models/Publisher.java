@@ -20,7 +20,10 @@ public class Publisher {
 
     @OneToMany
     @JoinColumn(name="publisher_id")
-    private final Set<Book> books;
+    private Set<Book> books;
+
+    protected Publisher() {
+    }
 
     public Publisher(String name, String addressLine1, String city, String state, String zip, Set<Book> books) {
         this.name = name;
