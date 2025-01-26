@@ -56,4 +56,15 @@ public class Book {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Book{");
+        sb.append("id=").append(id);
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", isbn='").append(isbn).append('\'');
+        sb.append(", authors=").append(authors);
+        sb.append('}');
+        return sb.toString();
+    }
 }
