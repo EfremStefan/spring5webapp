@@ -1,9 +1,6 @@
 package guru.springframework.spring5webapp.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,12 +12,22 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private final String name;
+    private String name;
+    private String addressLine1;
+    private String city;
+    private String state;
+    private String zip;
 
+    @OneToMany
+    @JoinColumn(name="publisher_id")
     private final Set<Book> books;
 
-    public Publisher(String name, Set<Book> books) {
+    public Publisher(String name, String addressLine1, String city, String state, String zip, Set<Book> books) {
         this.name = name;
+        this.addressLine1 = addressLine1;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
         this.books = books != null ? books : new HashSet<>();
     }
 
@@ -36,6 +43,21 @@ public class Publisher {
         return books;
     }
 
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -55,6 +77,10 @@ public class Publisher {
         final StringBuffer sb = new StringBuffer("Publisher{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
+        sb.append(", addressLine1='").append(addressLine1).append('\'');
+        sb.append(", city='").append(city).append('\'');
+        sb.append(", state='").append(state).append('\'');
+        sb.append(", zip='").append(zip).append('\'');
         sb.append(", books=").append(books);
         sb.append('}');
         return sb.toString();
