@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class BookController {
 
     private final BookService bookService;
@@ -16,10 +16,10 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/books")
+    @RequestMapping(method = RequestMethod.GET, value = "/books")
     public String getBooks(Model model){
 
         model.addAttribute("books", bookService.getAllBooks());
-        return "books";
+        return "books/list";
     }
 }
